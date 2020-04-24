@@ -1,11 +1,11 @@
 sudo: required
 services:
   - docker
-before_install:
-  - docker build -t negma/react-test -f ./client/Dockerfile.dev ./client
+#before_install:
+  #- docker build -t negma/react-test -f ./client/Dockerfile.dev ./client
 
-script:
-  - docker run -e CI=true negma/react-test npm test -- --coverage
+#script:
+  #- docker run -e CI=true negma/react-test npm test -- --coverage
   
 after_success:
   - docker --version
