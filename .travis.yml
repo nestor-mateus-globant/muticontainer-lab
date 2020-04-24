@@ -15,13 +15,13 @@ after_success:
   - docker build -t negma/multi-client ./client 
   - docker tag negma/multi-client:latest 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-client:latest
   - docker push 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-client:latest
-  #- docker build -t negma/multi-nginx ./nginx
-  #- docker tag negma/multi-nginx:latest 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-nginx:latest
-  #- docker push 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-nginx:latest
-  #- docker build -t negma/multi-server ./server
-  #- docker tag negma/multi-server:latest 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-server:latest
-  #- docker push 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-server:latest
-  #- docker build -t negma/multi-worker ./worker
-  #- docker tag negma/multi-worker:latest 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-worker:latest
-  #- docker push 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-worker:latest
+  - docker build -t negma/multi-nginx ./nginx
+  - docker tag negma/multi-nginx:latest 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-nginx:latest
+  - docker push 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-nginx:latest
+  - docker build -t negma/multi-server ./server
+  - docker tag negma/multi-server:latest 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-server:latest
+  - docker push 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-server:latest
+  - docker build -t negma/multi-worker ./worker
+  - docker tag negma/multi-worker:latest 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-worker:latest
+  - docker push 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-worker:latest
   #take this images and push in ECR
