@@ -1,0 +1,27 @@
+sudo: required
+services:
+  - docker
+before_install:
+  - docker build -t negma/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run negma/react-test npm test -- --coverage
+  
+after_success:
+  - docker --version
+  - pip install --user awscli
+  - export PATH=$PATH:$HOME/.local/bin
+  - eval $(aws ecr get-login --region us-east-1)
+  - docker build -t negma/multi-client ./client 
+  - docker tag negma/multi-client:latest 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-client:latest
+  - docker push 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-client:latest
+  - docker build -t negma/multi-nginx ./nginx
+  - docker tag negma/multi-nginx:latest 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-nginx:latest
+  - docker push 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-nginx:latest
+  - docker build -t negma/multi-server ./server
+  - docker tag negma/multi-server:latest 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-server:latest
+  - docker push 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-server:latest
+  - docker build -t negma/multi-worker ./worker
+  - docker tag negma/multi-worker:latest 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-worker:latest
+  - docker push 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-worker:latest
+  #take this images and push in ECR
