@@ -16,3 +16,13 @@ after_success:
   - docker tag negma/multi-client:latest 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-client:latest
   - docker push 663668850653.dkr.ecr.us-east-1.amazonaws.com/multi-client:latest
 
+  deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: "us-east-1"
+    app: "docker"
+    env: "Docker-env"
+    bucket_name: "elasticbeanstalk-us-east-1-663668850653"
+    bucket_path: "docker"
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
